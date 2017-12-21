@@ -55,7 +55,6 @@ using UnityEngine.Experimental.Networking;
         private void OnEnable()
         {
             // Debug.LogFormat("ExternalLogger -> OnEnable to {0}", filePath);
-            Application.logMessageReceived += MessageReceived;
             Application.logMessageReceivedThreaded += MessageReceived;
             StartCoroutine("SendLogs");
         }
@@ -122,7 +121,6 @@ using UnityEngine.Experimental.Networking;
 
         private void OnDisable()
         {
-            Application.logMessageReceived -= MessageReceived;
             Application.logMessageReceivedThreaded -= MessageReceived;
             StopCoroutine("SendLogs");
         }
