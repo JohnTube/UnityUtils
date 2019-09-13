@@ -253,5 +253,28 @@
 
         #endregion Sprite serialization
 
+        #region UnityEngine.Object
+
+        // https://jacx.net/2015/11/20/dont-use-equals-null-on-unity-objects.html
+        public static bool IsReallyNull(this UnityEngine.Object unityObject)
+        {
+            return unityObject;
+            //return ReferenceEquals(unityObject, null);
+            //return unityObject as object == null;
+            //return "null".Equals(unityObject.ToString());
+        }
+
+        public static void DestroyAndMakeNull(this UnityEngine.Object unityObject)
+        {
+            UnityEngine.Object.Destroy(unityObject);
+            unityObject = null;
+        }
+
+        public static bool IsDestroyedOrNotInAScene(this UnityEngine.Object unityObject)
+        {
+            return unityObject.IsReallyNull() && unityObject.IsNull();
+        }
+
+        #endregion
     }
 }
