@@ -42,6 +42,37 @@ namespace PolyTics.UnityUtils
                 && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
+        public static bool IsGUID(this string s)
+        {
+            try
+            {
+                new Guid(s);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // https://stackoverflow.com/a/1374644/1449056
+        public static bool IsEmail(this string email)
+        {
+            if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+            {
+                return false;
+            }
+            try
+            {
+                System.Net.Mail.MailAddress addr = new System.Net.Mail.MailAddress(email);
+                return email.Equals(addr.Address, StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static bool IsNullOrEmpty(this string s)
         {
             return string.IsNullOrEmpty(s);
