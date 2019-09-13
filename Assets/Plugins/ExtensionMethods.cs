@@ -1,4 +1,6 @@
-﻿namespace PolyTics.UnityUtils
+﻿using UnityEngine.Events;
+
+namespace PolyTics.UnityUtils
 {
 
     using System;
@@ -216,6 +218,21 @@
         }
 
         #endregion UI Image
+
+        #region UI Button
+
+        public static void SetSingleOnClickCallback(this Button button, UnityAction action)
+        {
+            if (button.IsNull())
+            {
+                Debug.LogWarning("Button is null");
+                return;
+            }
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(action);
+        }
+
+        #endregion
 
         #endregion UI
 
