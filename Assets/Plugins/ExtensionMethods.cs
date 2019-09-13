@@ -165,6 +165,19 @@
                 return objRoot.GetComponentInChildren<TType>();
             }
         }
+        
+        public static void SetActiveSafe(this GameObject gameObject, bool active)
+        {
+            if (gameObject.IsNull())
+            {
+                Debug.LogWarning("GameObject is null");
+                return;
+            }
+            if (active != gameObject.activeSelf)
+            {
+                gameObject.SetActive(active);
+            }
+        }
 
         #endregion GameObject
 
@@ -240,17 +253,5 @@
 
         #endregion Sprite serialization
 
-        public static void SetActiveSafe(this GameObject gameObject, bool active)
-        {
-            if (gameObject.IsNull())
-            {
-                Debug.LogWarning("GameObject is null");
-                return;
-            }
-            if (active != gameObject.activeSelf)
-            {
-                gameObject.SetActive(active);
-            }
-        }
     }
 }
