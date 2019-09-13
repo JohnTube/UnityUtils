@@ -272,7 +272,7 @@
 
         public static bool IsDestroyedOrNotInAScene(this UnityEngine.Object unityObject)
         {
-            return unityObject.IsReallyNull() && unityObject.IsNull();
+            return !unityObject.IsReallyNull() && unityObject.IsNull();
         }
 
         #endregion
